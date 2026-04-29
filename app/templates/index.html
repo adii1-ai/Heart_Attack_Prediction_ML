@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heart Attack Prediction</title>
+</head>
+<body>
+
+<h2>Heart Attack Prediction System</h2>
+
+<form action="/predict" method="post">
+
+    Age: <input type="text" name="age"><br><br>
+    Sex: <input type="text" name="sex"><br><br>
+    Chest Pain Type: <input type="text" name="cp"><br><br>
+    Resting BP: <input type="text" name="trestbps"><br><br>
+    Cholesterol: <input type="text" name="chol"><br><br>
+    Fasting Blood Sugar: <input type="text" name="fbs"><br><br>
+    Rest ECG: <input type="text" name="restecg"><br><br>
+    Max Heart Rate: <input type="text" name="thalach"><br><br>
+    Exercise Angina: <input type="text" name="exang"><br><br>
+    Oldpeak: <input type="text" name="oldpeak"><br><br>
+    Slope: <input type="text" name="slope"><br><br>
+    CA: <input type="text" name="ca"><br><br>
+    Thal: <input type="text" name="thal"><br><br>
+
+    <button type="submit">Predict</button>
+</form>
+
+<h3>{{ prediction_text }}</h3>
+
+</body>
+</html>
