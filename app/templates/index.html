@@ -1,32 +1,190 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Heart Attack Prediction</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+        }
+
+    .card {
+        max-width: 520px;
+        margin: 40px auto;
+        background: #fff;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .field {
+        margin-bottom: 12px;
+    }
+
+    label {
+        font-weight: 600;
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 8px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 15px;
+        border: none;
+        border-radius: 8px;
+        background: #4facfe;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #007bff;
+    }
+
+    .result {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .high { color: red; }
+    .low { color: green; }
+</style>
+```
+
 </head>
+
 <body>
 
-<h2>Heart Attack Prediction System</h2>
+<div class="card">
+    <h2>❤️ Heart Attack Prediction</h2>
+
 
 <form action="/predict" method="post">
 
-    Age: <input type="text" name="age"><br><br>
-    Sex: <input type="text" name="sex"><br><br>
-    Chest Pain Type: <input type="text" name="cp"><br><br>
-    Resting BP: <input type="text" name="trestbps"><br><br>
-    Cholesterol: <input type="text" name="chol"><br><br>
-    Fasting Blood Sugar: <input type="text" name="fbs"><br><br>
-    Rest ECG: <input type="text" name="restecg"><br><br>
-    Max Heart Rate: <input type="text" name="thalach"><br><br>
-    Exercise Angina: <input type="text" name="exang"><br><br>
-    Oldpeak: <input type="text" name="oldpeak"><br><br>
-    Slope: <input type="text" name="slope"><br><br>
-    CA: <input type="text" name="ca"><br><br>
-    Thal: <input type="text" name="thal"><br><br>
+    <div class="field">
+        <label>Age</label>
+        <input type="number" name="age" required>
+    </div>
+
+    <div class="field">
+        <label>Sex</label>
+        <select name="sex">
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+        </select>
+    </div>
+
+    <div class="field">
+        <label>Chest Pain Type</label>
+        <select name="cp">
+            <option value="0">Typical Angina</option>
+            <option value="1">Atypical</option>
+            <option value="2">Non-anginal</option>
+            <option value="3">Asymptomatic</option>
+        </select>
+    </div>
+
+    <div class="field">
+        <label>Resting BP</label>
+        <input type="number" name="trestbps" required>
+    </div>
+
+    <div class="field">
+        <label>Cholesterol</label>
+        <input type="number" name="chol" required>
+    </div>
+
+    <div class="field">
+        <label>Fasting Blood Sugar</label>
+        <select name="fbs">
+            <option value="1">True</option>
+            <option value="0">False</option>
+        </select>
+    </div>
+
+    <div class="field">
+        <label>Rest ECG</label>
+        <select name="restecg">
+            <option value="0">Normal</option>
+            <option value="1">Abnormal</option>
+            <option value="2">Hypertrophy</option>
+        </select>
+    </div>
+
+    <div class="field">
+        <label>Max Heart Rate</label>
+        <input type="number" name="thalach" required>
+    </div>
+
+    <div class="field">
+        <label>Exercise Angina</label>
+        <select name="exang">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+    </div>
+
+    <div class="field">
+        <label>Oldpeak</label>
+        <input type="number" step="0.1" name="oldpeak" required>
+    </div>
+
+    <div class="field">
+        <label>Slope</label>
+        <select name="slope">
+            <option value="0">Upsloping</option>
+            <option value="1">Flat</option>
+            <option value="2">Downsloping</option>
+        </select>
+    </div>
+
+    <div class="field">
+        <label>CA</label>
+        <input type="number" name="ca" min="0" max="4" required>
+    </div>
+
+    <div class="field">
+        <label>Thal</label>
+        <select name="thal">
+            <option value="1">Normal</option>
+            <option value="2">Fixed Defect</option>
+            <option value="3">Reversible Defect</option>
+        </select>
+    </div>
 
     <button type="submit">Predict</button>
 </form>
 
-<h3>{{ prediction_text }}</h3>
+<div class="result">
+    {% if prediction_text %}
+        {% if 'High' in prediction_text %}
+            <span class="high">{{ prediction_text }}</span>
+        {% else %}
+            <span class="low">{{ prediction_text }}</span>
+        {% endif %}
+    {% endif %}
+</div>
+
+</div>
 
 </body>
 </html>
